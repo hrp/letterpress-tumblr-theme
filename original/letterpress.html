@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+  Theme: Letterpress v1.2
+  Author: Kevin Holesh  [http://kevinholesh.com/]
+  For: Tumblr  [http://tumblr.com/]
+  Terms: Free to use and alter, but please give credit.
+-->
+<head>
+  <title>{block:PostTitle}{PostTitle} | {/block:PostTitle}{Title}</title>
+  <meta name="description" content="{MetaDescription}" />
+  
+  <script type="text/javascript">
+    function clearField(field_id, term_to_clear) {
+      if (document.getElementById(field_id).value == term_to_clear ) {
+        document.getElementById(field_id).value ='';
+      }
+    } // end clearField()
+  </script>
+  
+  <link rel="icon" href="{Favicon}"/>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+  
+  <!-- iPhone -->
+  <meta name="viewport" content="width=575"/>
+  <link rel="apple-touch-icon" href="{PortraitURL-128}"/>
+  
+  
+  <!-- DEFAULT COLORS -->
+  <meta name="text:Big Title Size" content="110" />
+  <meta name="color:Background" content="#eee"/>
+  <meta name="color:Text" content="#333"/>
+  <meta name="font:Body" content="'Helvetica Neue', Helvetica, Arial, Verdana, Sans-Serif">
+  <meta name="font:Article" content="Constantia, Cambria, Palatino, 'Palatino Linotype', Georgia, serif" />
+  <meta name="color:Link" content="#5386AD"/>
+  <meta name="color:Description" content="#5A5A5A"/>
+  <meta name="color:Title" content="#282828"/>
+  <meta name="color:Article Text" content="#001A2B" />
+  <meta name="color:Meta Link" content="#777" />
+  <meta name="color:Text Title" content="#3F5403" />
+  <meta name="color:Link Title" content="#CF741E" />
+  <!-- END DEFAULT COLORS -->
+  
+  <style type="text/css" media="all">
+    /************
+    * Title: CSS Reset, based on Eric Meyer's Reset
+    ************/
+    html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline; }
+    body { line-height:1;color:black;background:white; }
+    /* tables still need 'cellspacing="0"' in the markup */
+    table { border-collapse:separate;border-spacing:0; }
+    caption,th,td { text-align:left;font-weight:normal; }
+    blockquote:before,blockquote:after,
+    q:before,q:after { content:""; } 
+    blockquote,q { quotes:"" ""; }
+
+    /* include margin and padding in the width calculation of input and textarea - from Wordpress */
+    input[type="text"],
+    input[type="password"],
+    textarea {
+    	-moz-box-sizing: border-box;
+    	-webkit-box-sizing: border-box;
+    	-ms-box-sizing: border-box; /* ie8 only */
+    	box-sizing: border-box;
+    }
+
+    /* avoid line height problems when sup and sub's exist... can throw off consistent line height */
+    sup, sub { line-height: 0px; }
+    /************
+    * Author: Kevin Holesh - me@kevinholesh.com
+    ************/
+
+    @font-face {
+    	font-family: 'ChunkFiveRegular';
+    	src: url('http://static.tumblr.com/leqzobw/btMkuhzyr/chunkfive.eot');
+    	src: local('ChunkFive Regular'), local('ChunkFive'), url('http://static.tumblr.com/leqzobw/rxRkuhzzq/chunkfive.woff') format('woff'), url('http://static.tumblr.com/leqzobw/xgzkuhzz3/chunkfive.otf') format('opentype'), url('http://static.tumblr.com/leqzobw/MTHkuhzzc/chunkfive.svg#ChunkFive') format('svg');
+    }
+
+    body { background-color: {color:Background}; color: {color:Text}; font-family: {font:Body}; font-size: 17px; }
+    #container { margin: 0 auto; width: 600px; }
+
+    header, footer, aside, nav, article { display: block; }
+
+    em { font-style: italic; }
+    strong { font-weight: bold; }
+    code, pre { font-family: monospace; }
+    .clear { clear: both; height: 0px; }
+
+    a:link, a:visited { color: {color:Link}; text-decoration: none; }
+    a:hover, a:active { background-color: {color:Link}; color: white; }
+
+    p, ol, ul { line-height: 22px; margin: 0 0 22px 0; }
+
+    h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+    h2 { font-size: 32px; line-height: 44px; margin: 0 0 12px 0; }
+
+    header h1 { font-family: ChunkFiveRegular, 'Rockwell Extra Bold', 'Arial Black', Arial, sans-serif; font-size: {text:Big Title Size}px; font-weight: bold; }
+    header h1 a:link, header h1 a:visited { color: {color:Title}; text-shadow: white 1px 1px 0px; }
+    header h1 a:hover, header h1 a:active { background-color: transparent; opacity: 0.8; }
+    header p.description { color: {color:Description}; font-size: 15px; line-height: 22px; margin: 0; }
+    header nav ul { line-height: 22px; list-style: none; margin: 44px 0 6px 0; }
+    header nav ul li { float: left; }
+    header nav ul li.bull { font-size: 20px; margin: 0 3px; opacity: 0.2; }
+
+    #search-form { position: relative; top: -2px; }
+    #search-box { background-color: #F6F6F6; border: 1px solid transparent; color: #999; padding: 3px 25px 3px 8px; height: 22px;
+    	border-radius: 15px;
+    	-webkit-border-radius: 15px;
+    	-moz-border-radius: 15px; }
+    #search-box:focus { background-color: white; color: {color:Text}; }
+    #search-submit { position: absolute; right: 8px; top: 4px; }
+
+    h2.page-title { font-weight: normal; margin: 22px 0 22px 0; text-shadow: white 1px 1px 0px; }
+
+    p.entry-date { background: url('http://static.tumblr.com/leqzobw/Qhgkuhzzy/divider.png') repeat-x; margin: 44px 0 22px 0; }
+    p.entry-date span { background-color: {color:Background}; font-weight: bold; }
+    p.entry-date span.month { padding: 0 6px 0 0; }
+    p.entry-date span.day { padding: 0 8px 0 0; }
+
+    article { background: #FEF7EE url('http://static.tumblr.com/leqzobw/kgUkukq3z/paper.jpg') repeat; color: {color:Article Text}; font-family: {font:Article}; margin: 22px 0; padding: 44px; position: relative; text-shadow: white 1px 1px 0; overflow: hidden; }
+    article, div#pagination a { box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+    -moz-box-shadow: 3px 3px 7px rgba(0,0,0,0.3); } /* .boxshadow article, .boxshadow div#pagination a, */
+    .no-boxshadow article, .no-boxshadow div#pagination a { border-right: 3px solid #bbb; border-bottom: 3px solid #bbb; }
+
+    article a:link, article a:visited { border-bottom: 1px solid #bbb; }
+    article a:hover, article a:active { text-shadow: rgba(0,0,0,0.5) 1px 1px 0; }
+    article p.entry-meta { font-size: 13px; margin: 0; }
+    article p.entry-meta a { border: 0; color: {color:Meta Link}; margin: 0 10px 0 0; }
+    article p.entry-meta a:hover, article p.entry-meta a:active { text-shadow: white 1px 1px 0; }
+    article p.entry-meta a:hover { background-color: #ddd; }
+    article p.entry-meta span.tags a { line-height: 22px; opacity: 0.5; }
+    article p.entry-meta span.tags a:hover { opacity: 1; }
+    article p.entry-meta span.tags a strong { color: {color:Text}; font-weight: normal; }
+
+    article ol, article ul { list-style-position: inside; margin: 0 0 22px 20px; }
+
+    article h2, article p.entry-meta { font-family: {font:Body}; }
+
+    article.regular h2 { color: {color:Text Title}; }
+    article.link h2 a { border-bottom: 1px solid transparent; color: {color:Link Title}; border: 0; }
+    article.link h2 a:hover { background-color: transparent; border-bottom: 1px dashed #999; text-shadow: white 1px 1px 0; }
+    article.link h2 a span.arrow { color: #666; display: none; margin: 0 0 0 8px; }
+    article.link h2 a:hover span.arrow { display: inline; }
+
+    article.photo p.image a { border: 0; }
+    article.photo p.image a img { border: 1px solid #DBD5D0; padding: 7px; }
+    article.photo p.image a:hover { background-color: transparent; }
+    article.photo p.image a:hover img { border-color: #B3AFAA; }
+
+    article.quote blockquote { border: 0; padding: 0; }
+    article.quote blockquote div.words { font-size: 24px; line-height: 44px; margin: 0 0 22px 0; }
+    article.quote blockquote div.words:first-line { font-size: 34px; font-variant: small-caps; }
+    article.quote.long blockquote div.words { font-size: 19px; line-height: 24px; }
+    article.quote.long blockquote div.words:first-line { margin: 0 0 11px 0; }
+    article.quote div.source { font-style: italic; margin: 0 0 22px 0; }
+
+    article.conversation ul, article.conversation ol { list-style: none; margin: 0 0 22px 0; }
+    article.conversation li.user_1 { background-color: #E2DEE0; }
+
+    blockquote { border-left: 4px solid #bbb; padding: 0 0 0 15px; }
+    blockquote blockquote { opacity: 0.8; }
+    
+    div.audio-player, div.video { margin: 0 0 22px 0; }
+
+    /* Pagination */
+    div#pagination { margin: 44px; }
+    div#pagination a:link, div#pagination a:visited { background: #FEF7EE url('http://static.tumblr.com/leqzobw/kgUkukq3z/paper.jpg') repeat; display: block; padding: 22px; }
+    div#pagination a:hover, div#pagination a:active { background: {color:Link}; }
+    div.previous { float: left; }
+    div.next { float: right; }
+    div.page { clear: both; color: #666; font-style: italic; text-align: center; }
+    div.page strong { font-style: normal; }
+
+    /* Notes */
+    ol.notes { margin: 22px 44px 44px 44px; }
+    ol.notes li.note { border-top: 1px solid white; border-bottom: 2px solid #CFCFCF; list-style: none; padding: 11px 0 11px 0; }
+    ol.notes li:first-child { border-top: none; }
+    ol.notes li:last-child { border-bottom: none; }
+    ol.notes li.note blockquote { margin: 11px 0 0 22px; }
+
+
+    /* Footer
+    ------------------------------ */
+    footer { clear: both; color: #999; padding: 0 0 22px 0; text-align: center; }
+    
+    /* self-clear floats */
+    .group:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+    * html .group { /* for IE6 */ height: 1%; }
+    *:first-child+html .group { /* for IE7 */ min-height: 1%; }
+    
+  {CustomCSS}
+  </style>
+  
+  <!-- Putting Modernizr here to prevent @font-face loading bug in Gecko and Webkit -->
+  <script src="http://static.tumblr.com/leqzobw/swjkui008/modernizr-1.1.min.js"></script>
+  
+</head>
+<body>
+  <div id="container">    
+    <div id="content"> 
+      
+      <header>
+        
+        <nav>
+          <ul class="group">
+            <li id="archive"><a href="/archive">Archive</a></li>
+            <li class="bull">&bull;</li>
+            <li id="rss"><a href="{RSS}">RSS</a></li>
+            <li class="bull">&bull;</li>
+          {block:Likes}
+            <li id="likes"><a href="http://www.tumblr.com/liked/by/{Name}">Likes</a></li>
+            <li class="bull">&bull;</li>
+          {/block:Likes}
+            <li id="search">
+              <form action="/search" method="get" id="search-form">
+                <input type="text" name="q" id="search-box" value="Search..." onFocus="clearField('search-box', 'Search...')" />
+                <input type="image" id="search-submit" src="http://static.tumblr.com/leqzobw/dJnkui00u/search.png" alt="Search" />
+              </form>
+            </li>
+          </ul>
+        </nav>
+        
+        <h1><a href="/">{Title}</a></h1>
+        {block:Description}
+          <p class="description">{Description}</p>
+        {/block:Description}
+        
+      </header>
+
+
+      <div id="posts">
+      
+      {block:TagPage}
+	      <h2 class="page-title">Posts tagged <strong>{Tag}</strong></h2>
+	    {/block:TagPage}
+	    {block:SearchPage}
+	      <h2 class="page-title">Search results for <strong>{SearchQuery}</strong></h2>
+	    {/block:SearchPage}
+	    {block:NoSearchResults}
+	      <p>Nothing found for <strong>{SearchQuery}</strong></p>
+	      <p><form action="/search" method="get" id="search-form">
+          <input type="text" name="q" value="{SearchQuery}" onFocus="clearField('search-box', '{SearchQuery}')" />
+          <input type="submit" value="Search Again" />
+        </form></p>
+	    {/block:NoSearchResults}
+	    
+		  {block:Posts}
+		
+		    {block:NewDayDate}
+		      <p class="entry-date">
+            <span class="month">{ShortMonth}</span><span class="day">{DayOfMonth}</span>
+          </p>
+        {/block:NewDayDate}
+        
+        
+        {block:Quote}
+        <article class="hentry quote {Length}">
+          <div class="entry-content">
+            <blockquote>
+              <div class="words">{Quote}</div>
+            </blockquote>
+          
+            {block:Source}
+              <div class="source"><cite>{Source}</cite></div>
+            {/block:Source}
+          </div><!-- .entry-content -->
+        
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+        
+        </article>
+        {/block:Quote}
+      
+      
+      
+        {block:Text}
+        <article class="hentry regular">
+          {block:Title}
+            <h2 class="entry-title">{Title}</h2>
+          {/block:Title}
+        
+          <div class="entry-content">  
+            {Body}
+          </div><!-- .entry-content -->
+
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+        
+        </article>
+        {/block:Text}
+  
+      
+      
+        {block:Photo}
+        <article class="hentry photo">
+          <div class="entry-content">
+            <p class="image">
+              {LinkOpenTag}
+                <img src="{PhotoURL-500}" alt="{PhotoAlt}" />
+              {LinkCloseTag}
+            </p>
+          
+            {block:Caption}
+              <div class="caption">{Caption}</div>
+            {/block:Caption}
+          </div><!-- .entry-content -->
+        
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+
+        </article>
+        {/block:Photo}
+      
+      
+      
+        {block:Photoset}
+        <article class="hentry photo set">
+          <div class="entry-content">
+            <p class="image">
+              {Photoset-500}
+            </p>
+          
+            {block:Caption}
+              <div class="caption">{Caption}</div>
+            {/block:Caption}
+          </div><!-- .entry-content -->
+        
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+
+        </article>
+        {/block:Photoset}
+    
+    
+    
+        {block:Link}
+        <article class="hentry link">
+          <h2 class="entry-title"><a href="{URL}" {Target}>{Name}<span class="arrow">&rarr;</span></a></h2>
+        
+          {block:Description}
+          <div class="entry-content">
+            {Description}
+          </div><!-- .entry-content -->
+          {/block:Description}
+        
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+
+        </article>
+        {/block:Link}
+    
+    
+    
+        {block:Chat}
+        <article class="hentry conversation">
+          {block:Title}
+            <h2 class="entry-title">{Title}</h2>
+          {/block:Title}
+        
+          <div class="entry-content">
+            <ul>
+            
+              {block:Lines}
+              <li class="{Alt} user_{UserNumber}">
+              
+                {block:Label}
+                  <strong class="person user_{UserNumber}">{Label}</strong>
+                {/block:Label}
+              
+                <span class="line">{Line}</span>
+              </li>
+              {/block:Lines}
+
+            </ul>
+          </div><!-- .entry-content -->
+        
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+          
+        </article>
+        {/block:Chat}
+    
+
+
+        {block:Audio}
+        <article class="hentry audio">
+          <div class="entry-content">
+          
+            <div class="audio-player">
+              {AudioPlayerBlack}
+              {block:ExternalAudio}<p><a href="{ExternalAudioURL}" class="download">Download Audio</a></p>{/block:ExternalAudio}
+              
+            </div>  
+        
+            {block:Caption}
+              <div class="caption">{Caption}</div>
+            {/block:Caption}
+          
+          </div><!-- .entry-content -->
+        
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+        </article>
+        {/block:Audio}
+      
+      
+      
+        {block:Video}
+        <article class="hentry video">
+          <div class="entry-content">
+            <div class="video">
+              {Video-500}
+            </div>
+          
+            {block:Caption}
+              <div class="caption">{Caption}</div>
+            {/block:Caption}
+          </div><!-- .entry-content -->
+        
+          <p class="entry-meta">
+            <a href="{Permalink}" class="permalink">Posted at <strong>{12Hour}:{Minutes}{AmPm}</strong></a>
+            {block:NoteCount}
+              <a href="{Permalink}#notes" class="notes"><strong>{NoteCount}</strong> notes</a>
+            {/block:NoteCount}
+            
+            {block:HasTags}
+            <span class="tags">
+              {block:Tags}
+                <a href="{TagURL}">#<strong>{Tag}</strong></a>
+              {/block:Tags}
+            </span>
+            {/block:HasTags}
+          </p>
+
+        </article>
+        {/block:Video}
+    
+        <div id="notes">
+          {PostNotes}
+        </div><!-- #notes -->
+      {/block:Posts}
+      </div><!-- #posts -->
+    
+    
+      {block:Pagination}
+      <div id="pagination" class="group">
+        {block:NextPage}
+    		  <div class="previous"><a href="{NextPage}"><span>&laquo;</span> Older</a></div>
+    		{/block:NextPage}
+    		{block:PreviousPage}
+          <div class="next"><a href="{PreviousPage}">Newer <span>&raquo;</span></a></div>
+        {/block:PreviousPage}
+        <div class="page"><strong>{CurrentPage}</strong> of <strong>{TotalPages}</strong></div>
+      </div>
+      {/block:Pagination}
+      
+      
+      {block:DayPagination}
+      <div id="pagination" class="group">
+        
+    		{block:PreviousDayPage}
+          <div class="previous"><a href="{PreviousDayPage}"><span>&laquo;</span> {ShortMonth} {DayOfMonth}</a></div>
+        {/block:PreviousDayPage}
+        
+        {block:NextDayPage}
+    		  <div class="next"><a href="{NextDayPage}">{ShortMonth} {DayOfMonth} <span>&raquo;</span></a></div>
+    		{/block:NextDayPage}
+        
+      </div>
+      {/block:DayPagination}
+    
+    
+      <footer>
+        <p>Powered by <a href="http://tumblr.com/">Tumblr</a>. Designed by <a href="http://kevinholesh.com/" title="Web Designer Extraordinaire">Kevin Holesh</a>. <a href="http://kevinholesh.com/letterpress">Credits</a>.</p>       
+      </footer>
+      
+      
+    </div> <!-- #content -->
+  </div>
+</body>
+</html>
